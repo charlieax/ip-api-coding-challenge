@@ -1,0 +1,8 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "exclude": ["node_modules", "*.d.ts"],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "./bin"
+  }
+}
