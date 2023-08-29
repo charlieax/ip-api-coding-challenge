@@ -1,9 +1,9 @@
 import { type Express } from 'express'
 
-import { getWeather } from './weather'
+import { getLocation } from './location'
 import { getHealth } from './health'
 
 export const configureExpressRoutes = (app: Express) => {
-  app.get('/weather', getWeather)
   app.get('/health', getHealth)
+  app.get('/location', getLocation)
 }

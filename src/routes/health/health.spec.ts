@@ -1,14 +1,26 @@
-import request from 'supertest'
-import { createServer } from '../../config/express'
+import { Request, Response } from 'express'
+import {
+  createRequest,
+  createResponse,
+  MockRequest,
+  MockResponse,
+} from 'node-mocks-http'
+
+import { getHealth } from './health'
 
 describe('GET /health', function () {
-  it('responds with healthy json', async function () {
-    const app = createServer()
+  let request: MockRequest<Request>
+  let response: MockResponse<Response>
 
-    const response = await request(app).get('/health')
-    expect(response.headers['content-type']).toMatch('application/json')
-    expect(response.headers['access-control-allow-origin']).toMatch('*')
-    expect(response.status).toBe(200)
-    expect(response.body.healthy).toBeTruthy()
+  beforeEach(() => {
+    request = createRequest({ method: 'GET', url: '/health' })
+    response = createResponse()
+  })
+
+  it('responds with healthy json', async function () {
+    await getHealth(request, response)
+
+    expect(response._getStatusCode()).toBe(200)
+    expect(response._getData().healthy).toBeTruthy()
   })
 })

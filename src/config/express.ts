@@ -7,7 +7,9 @@ export const createServer = () => {
 
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
+
   app.disable('x-powered-by')
+  app.set('trust proxy', true)
 
   configureExpressRoutes(app)
 
