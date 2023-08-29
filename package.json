@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./bin/ && tsc --project tsconfig.build.json",
-    "start": "node ./bin/app.js",
+    "start": "node ./bin/src/app.js",
     "dev": "nodemon --config restart.json",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx"
